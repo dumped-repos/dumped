@@ -19,6 +19,8 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     debug_inspector (0.0.3)
+    domain_name (0.5.20170404)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.1)
     dry-configurable (0.7.0)
       concurrent-ruby (~> 1.0)
@@ -124,6 +126,15 @@ GEM
     hanami-webconsole (0.1.0.beta2)
       better_errors (~> 2.4)
       binding_of_caller (~> 0.8)
+    http (3.0.0)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (>= 2.0.0.pre.pre2, < 3)
+      http_parser.rb (~> 0.6.0)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    http-form_data (2.1.0)
+    http_parser.rb (0.6.0)
     http_router (0.11.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
@@ -188,6 +199,9 @@ GEM
     thor (0.20.0)
     tilt (2.0.8)
     transproc (1.0.2)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.5)
     url_mount (0.2.1)
       rack
     xpath (3.0.0)
@@ -203,6 +217,7 @@ DEPENDENCIES
   hanami-model (= 1.2.0.beta2)
   hanami-reloader
   hanami-webconsole
+  http
   minitest
   pg
   rake

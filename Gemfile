@@ -6,6 +6,8 @@ gem 'hanami-model', '1.2.0.beta2'
 
 gem 'pg'
 
+gem 'http'
+
 group :plugin do
   gem 'hanami-reloader'
 end
