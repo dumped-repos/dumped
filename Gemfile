@@ -6,11 +6,11 @@ gem 'hanami-model', '1.2.0.beta2'
 
 gem 'pg'
 
-group :development do
-  # Code reloading
-  # See: http://hanamirb.org/guides/projects/code-reloading
-  gem 'shotgun'
+group :plugin do
+  gem 'hanami-reloader'
+end
 
+group :development do
   gem 'hanami-webconsole'
 end
 
