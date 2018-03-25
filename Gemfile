@@ -6,14 +6,18 @@ gem 'hanami-model', '1.2.0.beta2'
 
 gem 'pg'
 
+gem 'slim'
+gem 'sass'
+
 gem 'http'
 
-group :plugin do
+group :plugins do
   gem 'hanami-reloader'
 end
 
 group :development do
   gem 'hanami-webconsole'
+  gem 'pry-byebug'
 end
 
 group :test, :development do
