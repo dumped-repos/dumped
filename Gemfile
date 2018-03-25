@@ -23,6 +23,7 @@ end
 group :test do
   gem 'minitest'
   gem 'capybara'
+  gem "codeclimate-test-reporter"
 end
 
 group :production do

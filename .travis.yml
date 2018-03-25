@@ -1,0 +1,15 @@
+language: ruby
+dist: trusty
+sudo: false
+cache: bundler
+before_script:
+ - HANAMI_ENV=test bundle exec hanami db prepare
+script:
+ - bundle exec rake
+after_success:
+ - '[ -d coverage ] && bundle exec codeclimate-test-reporter'
+rvm:
+ - 2.4.1
+addons:
+ code_climate:
+   repo_token: 9b347a6f8c924b98f5250407de9ba10d1f323469e13bfa3e2b99db65fd559ced
