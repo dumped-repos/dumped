@@ -1,0 +1,12 @@
+.repos__filter
+  = select_repos_by_language
+
+.repos__list
+  - repos.each do |git_repo|
+    .repo-item
+      .repos-item__name = git_repo.name
+      .repos-item__description = git_repo.description
+      .repos-item__language = git_repo.language
+
+
+
