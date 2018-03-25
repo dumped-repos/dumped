@@ -21,7 +21,7 @@ group :test, :development do
 end
 
 group :test do
-  gem 'minitest'
+  gem 'rspec'
   gem 'capybara'
   gem "codeclimate-test-reporter"
 end
