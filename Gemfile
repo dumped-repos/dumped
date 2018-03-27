@@ -11,6 +11,9 @@ gem 'sass'
 
 gem 'http'
 
+gem 'omniauth'
+gem 'omniauth-github'
+
 group :plugins do
   gem 'hanami-reloader'
 end
@@ -28,6 +31,7 @@ group :test do
   gem 'rspec'
   gem 'capybara'
   gem "codeclimate-test-reporter"
+  gem 'rspec-hanami'
 end
 
 group :production do
