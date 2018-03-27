@@ -3,13 +3,13 @@ require_relative '../../../spec_helper'
 describe Web::Controllers::Repos::Index, type: :action do
   let(:action) { described_class.new }
   let(:params) { Hash[] }
-  let(:git_repo) { GitRepoRepository.new }
+  let(:repo) { RepoRepository.new }
 
-  after { git_repo.clear }
+  after { repo.clear }
 
   before do
-    git_repo.create(git_repo_attributes(language: 'javascript'))
-    git_repo.create(git_repo_attributes(language: 'ruby'))
+    repo.create(repo_attributes(language: 'javascript'))
+    repo.create(repo_attributes(language: 'ruby'))
   end
 
   describe 'expose' do
@@ -20,7 +20,7 @@ describe Web::Controllers::Repos::Index, type: :action do
         end
 
         it { expect(action.repos).to be_a Array }
-        it { expect(action.repos).to all(be_a GitRepo) }
+        it { expect(action.repos).to all(be_a Repo) }
       end
 
       context 'when db has git repositories and language params are present' do
@@ -29,7 +29,7 @@ describe Web::Controllers::Repos::Index, type: :action do
         end
 
         it { expect(action.repos).to be_a Array }
-        it { expect(action.repos).to all(be_a GitRepo) }
+        it { expect(action.repos).to all(be_a Repo) }
         it { expect(action.repos.first.language).to eq 'ruby' }
       end
 
@@ -39,7 +39,7 @@ describe Web::Controllers::Repos::Index, type: :action do
         end
 
         it { expect(action.repos).to be_a Array }
-        it { expect(action.repos).to all(be_a GitRepo) }
+        it { expect(action.repos).to all(be_a Repo) }
         it { expect(action.repos.count).to eq 2 }
       end
     end

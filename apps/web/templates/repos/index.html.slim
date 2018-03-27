@@ -2,11 +2,11 @@
   = select_repos_by_language
 
 .repos__list
-  - repos.each do |git_repo|
+  - repos.each do |repo|
     .repo-item
-      .repos-item__name = git_repo.name
-      .repos-item__description = git_repo.description
-      .repos-item__language = git_repo.language
+      .repos-item__name = repo.name
+      .repos-item__description = repo.description
+      .repos-item__language = repo.language
 
 
 

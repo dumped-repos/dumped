@@ -1,5 +1,5 @@
-module GitRepoAttributes
-  def git_repo_attributes(attrs = {})
+module RepoAttributes
+  def repo_attributes(attrs = {})
     {
       repo_id: 1,
       owner_login: 'test',
@@ -21,5 +21,5 @@ module GitRepoAttributes
 end
 
 RSpec.configure do |config|
-  config.include GitRepoAttributes
+  config.include RepoAttributes
 end

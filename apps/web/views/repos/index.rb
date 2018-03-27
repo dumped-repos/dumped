@@ -11,11 +11,11 @@ module Web::Views::Repos
     private
 
     def all_type
-      { GitRepo::ALL => GitRepo::ALL.downcase }
+      { Repo::ALL => Repo::ALL.downcase }
     end
 
     def languages
-      all_type.merge(GitRepo::LANGUAGES)
+      all_type.merge(Repo::LANGUAGES)
     end
   end
 end

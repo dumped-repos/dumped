@@ -2,9 +2,9 @@ require_relative '../config/boot'
 
 puts 'Importing all git repos that are looking for maintainers'
 
-repo = GitRepoRepository.new
+repo = RepoRepository.new
 
-import = ImportGitRepos.new(repo)
+import = ImportRepos.new(repo)
 import.call
 
 

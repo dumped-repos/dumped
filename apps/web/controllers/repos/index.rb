@@ -11,7 +11,7 @@ module Web::Controllers::Repos
 
     def repos_list(params = {})
       if language = params&.fetch(:language) { nil }
-        return repository.all if language == GitRepo::ALL.downcase
+        return repository.all if language == Repo::ALL.downcase
         repository.by_language(language)
       else
         repository.all
@@ -19,7 +19,7 @@ module Web::Controllers::Repos
     end
 
     def repository
-      @repository ||= GitRepoRepository.new
+      @repository ||= RepoRepository.new
     end
   end
 end
