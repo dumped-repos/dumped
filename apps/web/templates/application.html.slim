@@ -9,7 +9,7 @@ html
   body
     - if authenticated?
       a href="auth/logout" Logout
+      = link_to 'Profile', routes.user_path(current_user.id)
     - else
       a href="auth/github" Login
-    = current_user.inspect
     = yield
