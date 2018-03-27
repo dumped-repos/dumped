@@ -3,7 +3,7 @@ module Web::Views::Repos
     include Web::View
 
     def select_repos_by_language
-      form_for :repos, routes.repos_path, method: :get do
+      form_for :repos, routes.root_path, method: :get do
         select(:language, languages, id: 'git-repo-language-select')
       end
     end
