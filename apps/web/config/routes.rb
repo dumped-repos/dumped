@@ -4,3 +4,4 @@
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
 root to: 'repos#index'
+get '/user/:id', to: 'user#show', as: :user
