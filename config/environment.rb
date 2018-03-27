@@ -1,6 +1,7 @@
 require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
+require_relative './sidekiq'
 require_relative '../lib/dumped'
 require_relative '../apps/auth/application'
 require_relative '../apps/web/application'

@@ -21,6 +21,7 @@ GEM
       simplecov (<= 0.13)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
+    connection_pool (2.2.1)
     debug_inspector (0.0.3)
     diff-lcs (1.3)
     docile (1.1.5)
@@ -163,6 +164,7 @@ GEM
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    mustermann (1.0.2)
     nenv (0.3.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
@@ -193,12 +195,15 @@ GEM
       pry (~> 0.10)
     public_suffix (3.0.2)
     rack (2.0.4)
+    rack-protection (2.0.1)
+      rack
     rack-test (0.8.3)
       rack (>= 1.0, < 3)
     rake (12.3.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redis (4.0.1)
     rom (3.3.3)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.3)
@@ -245,11 +250,21 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     sequel (4.49.0)
     shellany (0.0.1)
+    sidekiq (5.1.1)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     simplecov (0.13.0)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
+    sinatra (2.0.1)
+      mustermann (~> 1.0)
+      rack (~> 2.0)
+      rack-protection (= 2.0.1)
+      tilt (~> 2.0)
     slim (3.0.9)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 1.3.3, < 2.1)
@@ -287,6 +302,8 @@ DEPENDENCIES
   rspec
   rspec-hanami
   sass
+  sidekiq
+  sinatra
   slim
 
 BUNDLED WITH

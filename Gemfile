@@ -14,6 +14,9 @@ gem 'http'
 gem 'omniauth'
 gem 'omniauth-github'
 
+gem 'sidekiq'
+gem 'sinatra', require: false
+
 group :plugins do
   gem 'hanami-reloader'
 end
