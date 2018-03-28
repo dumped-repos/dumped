@@ -4,13 +4,18 @@ module Auth::Controllers::Auth
 
     def call(params)
       store_session(user)
+      import_repos(user.login)
       redirect_to '/'
     end
 
     private
 
     def user
-      user_repo.by_login(user_params[:login]) || user_repo.create(user_params)
+      @user ||= user_repo.by_login(user_params[:login]) || user_repo.create(user_params)
+    end
+
+    def import_repos(login)
+      Workers::Auth::ImportRepos.perform_async(login)
     end
 
     def omniauth_params

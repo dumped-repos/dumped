@@ -60,6 +60,10 @@ RSpec.describe Auth::Controllers::Auth::Create do
 
   after { user_repo.clear }
 
+  before do
+    expect(Workers::Auth::ImportRepos).to receive(:perform_async)
+  end
+
   it { expect(action.call(params)).to redirect_to('/') }
 
   context 'when user do not exists' do
