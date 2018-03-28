@@ -35,6 +35,7 @@ group :test do
   gem 'capybara'
   gem "codeclimate-test-reporter"
   gem 'rspec-hanami'
+  gem 'webmock'
 end
 
 group :production do
