@@ -1,56 +1,32 @@
 require "http"
 
 class ImportGitRepos
-  attr_reader :repository
+  attr_reader :repository, :fetcher
 
-  def initialize(repository)
+  def initialize(repository, fetcher: Services::Repos::Fetcher)
     @repository = repository
+    @fetcher = fetcher
   end
 
   def call
-    fetch_repos do |repo|
-      if repo['language'].nil?
-        puts "Skipping Repo #{repo['name']}"
-        next
+    fetcher.call(github_search_url) do |body_parsed|
+      body_parsed['items'].each do |repo|
+        if repo['language'].nil?
+          puts "Skipping Repo #{repo['name']}"
+          next
+        end
+
+        repo_info = extract_repo_info(repo)
+
+        repository.create(repo_info)
       end
-
-      repo_info = extract_repo_info(repo)
-
-      repository.create(repo_info)
     end
   end
 
   private
-  def fetch_repos(url = github_search_url, &block)
-    response = Http.get(url)
-
-    headers = response.headers
-
-    next_link = extract_next_link(headers['Link'])
-    remaining_requests = headers['X-Ratelimit-Remaining']
-    body_parsed = response.parse
-
-    body_parsed['items'].each do |repo|
-      yield repo
-    end
-
-    if remaining_requests == '0'
-      puts 'Sleeping for a minute'
-      sleep(70)
-    end
-
-    fetch_repos(next_link, &block) if next_link
-  end
 
   def github_search_url
     'https://api.github.com/search/repositories?q=looking+for+maintainers+in:readme,description&order=desc'
-  end
-
-  def extract_next_link(link_header)
-    return if link_header.empty?
-    splitted_string = link_header.split(',').map { |s| s.split(';') }
-    url = splitted_string.select { |link, rel| rel.include?('next') }.flatten.first
-    url.strip.slice(1..-2) if url
   end
 
   def extract_repo_info(repo_hash)

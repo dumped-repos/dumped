@@ -20,7 +20,7 @@ RSpec.describe Services::Users::Repos::Import do
        	  'Host'=>'api.github.com',
        	  'User-Agent'=>'http.rb/3.0.0'
            }).
-         to_return(status: 200, body: http_fixture('github_repos'), headers: {'Content-Type'  => 'application/json; charset=utf-8'})
+         to_return(status: 200, body: http_fixture('github_repos'), headers: {'Content-Type'  => 'application/json; charset=utf-8', 'Link' => ''})
     end
 
     it 'creates all repos associated with the user' do

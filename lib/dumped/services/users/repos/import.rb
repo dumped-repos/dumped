@@ -1,25 +1,24 @@
 # frozen_string_literal: true
 
-require "http"
-
 module Services
   module Users
     module Repos
       class Import
 
-        attr_reader :user_repository, :repo_repository
+        attr_reader :user_repository, :repo_repository, :fetcher
 
-        def initialize(user_repository: UserRepository.new, repo_repository: RepoRepository.new)
+        def initialize(user_repository: UserRepository.new, repo_repository: RepoRepository.new, fetcher: Services::Repos::Fetcher)
           @user_repository = user_repository
           @repo_repository = repo_repository
+          @fetcher         = fetcher
         end
 
         def call(login)
-          response = Http.get(user_repo_url(login))
-          body_parsed = response.parse
-          body_parsed.each do |repo|
-            repo_info = extract_repo_info(repo)
-            create_repo(repo_info, user(login))
+          fetcher.call(user_repo_url(login)) do |body_parsed|
+            body_parsed.each do |repo|
+              repo_info = extract_repo_info(repo)
+              create_repo(repo_info, user(login))
+            end
           end
         end
 
