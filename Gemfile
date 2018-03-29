@@ -14,6 +14,9 @@ gem 'http'
 gem 'omniauth'
 gem 'omniauth-github'
 
+gem 'sidekiq'
+gem 'sinatra', require: false
+
 group :plugins do
   gem 'hanami-reloader'
 end
@@ -32,6 +35,7 @@ group :test do
   gem 'capybara'
   gem "codeclimate-test-reporter"
   gem 'rspec-hanami'
+  gem 'webmock'
 end
 
 group :production do

@@ -1,5 +1,6 @@
 RSpec.describe Auth::Controllers::Auth::Create do
-  let(:action) { described_class.new }
+  let(:import_repos_worker) { double('ImportReposWorker') }
+  let(:action) { described_class.new(import_repos_worker: import_repos_worker) }
   let(:user_repo) { UserRepository.new }
   let(:params) { Hash['omniauth.auth' => omniauth_auth_params] }
   let(:omniauth_auth_params) do
@@ -59,6 +60,10 @@ RSpec.describe Auth::Controllers::Auth::Create do
   end
 
   after { user_repo.clear }
+
+  before do
+    expect(import_repos_worker).to receive(:perform_async).with('GustavoCaso')
+  end
 
   it { expect(action.call(params)).to redirect_to('/') }
 

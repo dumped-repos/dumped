@@ -1,4 +1,4 @@
-class GitRepo < Hanami::Entity
+class Repo < Hanami::Entity
   LANGUAGES = {
     'ActionScript' => 'ActionScript',
     'C' => 'C',

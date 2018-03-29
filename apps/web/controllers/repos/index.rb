@@ -3,23 +3,15 @@ module Web::Controllers::Repos
     include Web::Action
     expose :repos
 
+    attr_reader :repos_list
+
+    def initialize(repos_list: Services::Repos::List.new)
+      @repos_list = repos_list
+    end
+
     def call(params)
-      @repos = repos_list(params[:repos]) || []
-    end
-
-    private
-
-    def repos_list(params = {})
-      if language = params&.fetch(:language) { nil }
-        return repository.all if language == GitRepo::ALL.downcase
-        repository.by_language(language)
-      else
-        repository.all
-      end
-    end
-
-    def repository
-      @repository ||= GitRepoRepository.new
+      language = params[:repos]&.fetch(:language) { nil }
+      @repos = repos_list.call(language) || []
     end
   end
 end

@@ -1,5 +1,5 @@
 require_relative '../../spec_helper'
 
-describe GitRepo do
+describe Repo do
   # place your tests here
 end

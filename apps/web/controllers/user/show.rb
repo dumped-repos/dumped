@@ -4,15 +4,15 @@ module Web::Controllers::User
 
     expose :user
 
-    def call(params)
-      @user = user_repository.find(params[:id])
-      halt 404 unless @user
+    attr_reader :repository
+
+    def initialize(repository: UserRepository.new)
+      @repository = repository
     end
 
-    private
-
-    def user_repository
-      @user_repository ||= UserRepository.new
+    def call(params)
+      @user = repository.find(params[:id])
+      halt 404 unless @user
     end
   end
 end
