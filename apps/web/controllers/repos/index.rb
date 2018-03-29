@@ -3,25 +3,16 @@ module Web::Controllers::Repos
     include Web::Action
     expose :repos
 
-    attr_reader :repository
+    attr_reader :repository, :repos_list
 
-    def initialize(repository: RepoRepository.new)
+    def initialize(repository: RepoRepository.new, repos_list: Services::Repos::List)
       @repository = repository
+      @repos_list = repos_list.new(repository: repository)
     end
 
     def call(params)
-      @repos = repos_list(params[:repos]) || []
-    end
-
-    private
-
-    def repos_list(params = {})
-      if language = params&.fetch(:language) { nil }
-        return repository.all if language == Repo::ALL.downcase
-        repository.by_language(language)
-      else
-        repository.all
-      end
+      language = params[:repos]&.fetch(:language) { nil }
+      @repos = repos_list.call(language) || []
     end
   end
 end
