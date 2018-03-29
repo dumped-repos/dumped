@@ -3,11 +3,10 @@ module Web::Controllers::Repos
     include Web::Action
     expose :repos
 
-    attr_reader :repository, :repos_list
+    attr_reader :repos_list
 
-    def initialize(repository: RepoRepository.new, repos_list: Services::Repos::List)
-      @repository = repository
-      @repos_list = repos_list.new(repository: repository)
+    def initialize(repos_list: Services::Repos::List)
+      @repos_list = repos_list.new
     end
 
     def call(params)
