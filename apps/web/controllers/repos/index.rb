@@ -5,7 +5,7 @@ module Web::Controllers::Repos
 
     attr_reader :repos_list
 
-    def initialize(repos_list: Services::Repos::List.new)
+    def initialize(repos_list: Services::Web::Repos::List.new)
       @repos_list = repos_list
     end
 
