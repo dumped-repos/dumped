@@ -3,6 +3,12 @@ module Web::Controllers::Repos
     include Web::Action
     expose :repos
 
+    attr_reader :repository
+
+    def initialize(repository: RepoRepository.new)
+      @repository = repository
+    end
+
     def call(params)
       @repos = repos_list(params[:repos]) || []
     end
@@ -16,10 +22,6 @@ module Web::Controllers::Repos
       else
         repository.all
       end
-    end
-
-    def repository
-      @repository ||= RepoRepository.new
     end
   end
 end

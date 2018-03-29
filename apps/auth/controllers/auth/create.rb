@@ -2,6 +2,12 @@ module Auth::Controllers::Auth
   class Create
     include Auth::Action
 
+    attr_reader :repository
+
+    def initialize(repository: UserRepository.new)
+      @repository = repository
+    end
+
     def call(params)
       store_session(user)
       import_repos(user.login)
@@ -11,7 +17,7 @@ module Auth::Controllers::Auth
     private
 
     def user
-      @user ||= user_repo.by_login(user_params[:login]) || user_repo.create(user_params)
+      @user ||= repository.by_login(user_params[:login]) || repository.create(user_params)
     end
 
     def import_repos(login)
@@ -32,10 +38,6 @@ module Auth::Controllers::Auth
         bio: omniauth_params['extra']['raw_info']['bio'],
         token: omniauth_params['credentials']['token']
       }
-    end
-
-    def user_repo
-      @user_repo ||= UserRepository.new
     end
 
     def store_session(user)
