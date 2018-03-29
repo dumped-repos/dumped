@@ -33,7 +33,7 @@ How to prepare (create and migrate) DB for `development` and `test` environments
 To import all Github repos that are looking for a maintainer:
 
 ```
-% bundle exec ruby db/seed
+% bundle exec ruby db/seed.rb
 ```
 
 **Attention:** This might take a while approx 10 minutes, how the seed works it will use Github api to search for repos that have looking for maintainers in the `README`. It will do it recursively, and will sleep the process when reaching the limit of public calls.
