@@ -2,10 +2,11 @@ module Auth::Controllers::Auth
   class Create
     include Auth::Action
 
-    attr_reader :repository
+    attr_reader :repository, :import_repos_worker
 
-    def initialize(repository: UserRepository.new)
+    def initialize(repository: UserRepository.new, import_repos_worker: Workers::Auth::ImportRepos)
       @repository = repository
+      @import_repos_worker = import_repos_worker
     end
 
     def call(params)
@@ -21,7 +22,7 @@ module Auth::Controllers::Auth
     end
 
     def import_repos(login)
-      Workers::Auth::ImportRepos.perform_async(login)
+      import_repos_worker.perform_async(login)
     end
 
     def omniauth_params
