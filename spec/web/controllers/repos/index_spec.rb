@@ -8,7 +8,6 @@ describe Web::Controllers::Repos::Index, type: :action do
   describe '#call' do
     context 'no language params' do
       it 'calls repos_list' do
-        expect(repos_list).to receive(:new).and_return(repos_list)
         expect(repos_list).to receive(:call).with(nil)
         subject
       end
@@ -17,7 +16,6 @@ describe Web::Controllers::Repos::Index, type: :action do
     context 'with language params' do
       let(:params) { Hash[repos: { language: 'ruby' }] }
       it 'calls repos_list' do
-        expect(repos_list).to receive(:new).and_return(repos_list)
         expect(repos_list).to receive(:call).with('ruby')
         subject
       end
