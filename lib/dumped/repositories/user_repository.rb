@@ -11,3 +11,4 @@ class UserRepository < Hanami::Repository
     users.by_pk(id).one
   end
 end
+

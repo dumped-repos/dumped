@@ -1,3 +1,5 @@
+# auto_register: false
+
 module Authentication
   def self.included(action)
     action.class_eval do

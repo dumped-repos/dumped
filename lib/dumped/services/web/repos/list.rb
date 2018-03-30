@@ -4,11 +4,7 @@ module Services
   module Web
     module Repos
       class List
-        attr_reader :repository
-
-        def initialize(repository: RepoRepository.new)
-          @repository = repository
-        end
+        include Import[repository: 'repositories.repo']
 
         def call(language)
           if language

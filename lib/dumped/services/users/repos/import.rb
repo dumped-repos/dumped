@@ -5,13 +5,11 @@ module Services
     module Repos
       class Import
 
-        attr_reader :user_repository, :repo_repository, :fetcher
-
-        def initialize(user_repository: UserRepository.new, repo_repository: RepoRepository.new, fetcher: Services::Repos::Fetcher)
-          @user_repository = user_repository
-          @repo_repository = repo_repository
-          @fetcher         = fetcher
-        end
+        include ::Import[
+          repo_repository: 'repositories.repo',
+          user_repository: 'repositories.user',
+          fetcher: 'services.repos.fetcher'
+        ]
 
         def call(login)
           fetcher.call(user_repo_url(login)) do |body_parsed|

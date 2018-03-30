@@ -3,7 +3,7 @@ require 'http'
 module Services
   module Repos
     class Fetcher
-      def self.call(url, &block)
+      def call(url, &block)
         response = Http.get(url)
 
         headers = response.headers
@@ -22,14 +22,14 @@ module Services
         call(next_link, &block) if next_link
       end
 
-      def self.extract_next_link(link_header)
+      private
+
+      def extract_next_link(link_header)
         return if link_header.empty?
         splitted_string = link_header.split(',').map { |s| s.split(';') }
         url = splitted_string.select { |link, rel| rel.include?('next') }.flatten.first
         url.strip.slice(1..-2) if url
       end
-
-      private_class_method :extract_next_link
     end
   end
 end

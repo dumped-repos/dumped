@@ -1,13 +1,10 @@
 module Auth::Controllers::Auth
   class Create
     include Auth::Action
-
-    attr_reader :repository, :import_repos_worker
-
-    def initialize(repository: UserRepository.new, import_repos_worker: Workers::Auth::ImportRepos)
-      @repository = repository
-      @import_repos_worker = import_repos_worker
-    end
+    include Import[
+      repository: 'repositories.user',
+      import_repos_worker: 'workers.auth.import_repos'
+    ]
 
     def call(params)
       store_session(user)
