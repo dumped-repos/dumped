@@ -1,13 +1,11 @@
 module Services
-  module DB
+  module Db
     class ImportRepos
-      attr_reader :repo_repository, :user_repository, :fetcher
-
-      def initialize(repo_repository: RepoRepository.new, user_repository: UserRepository.new, fetcher: Services::Repos::Fetcher)
-        @repo_repository = repo_repository
-        @user_repository = user_repository
-        @fetcher = fetcher
-      end
+      include Import[
+        repo_repository: 'repositories.repo',
+        user_repository: 'repositories.user',
+        fetcher: 'services.repos.fetcher'
+      ]
 
       def call
         fetcher.call(github_search_url) do |body_parsed|

@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'bootsnap', require: false
+
 gem 'rake'
 gem 'hanami',       '1.2.0.beta2'
 gem 'hanami-model', '1.2.0.beta2'
@@ -16,6 +18,11 @@ gem 'omniauth-github'
 
 gem 'sidekiq'
 gem 'sinatra', require: false
+
+gem 'dry-system'
+gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
+
+gem 'foreman'
 
 group :plugins do
   gem 'hanami-reloader'

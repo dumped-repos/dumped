@@ -1,13 +1,11 @@
 module Web::Controllers::Repos
   class Index
     include Web::Action
+    include Import[repos_list: 'services.web.repos.list']
+
     expose :repos
 
     attr_reader :repos_list
-
-    def initialize(repos_list: Services::Web::Repos::List.new)
-      @repos_list = repos_list
-    end
 
     def call(params)
       language = params[:repos]&.fetch(:language) { nil }
