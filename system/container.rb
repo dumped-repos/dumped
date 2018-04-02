@@ -12,7 +12,7 @@ class Container < Dry::System::Container
   register_folder! 'dumped/repositories'
   register_folder! 'dumped/entities'
   register_folder! 'dumped/services'
-  register_folder! 'dumped/workers'
+  register_folder! 'dumped/workers', resolver: ->(k) { k }
 
   configure do |config|
     config.env = Hanami.env
