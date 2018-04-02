@@ -22,6 +22,8 @@ gem 'sinatra', require: false
 gem 'dry-system'
 gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
 
+gem 'foreman'
+
 group :plugins do
   gem 'hanami-reloader'
 end
