@@ -20,7 +20,7 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 
 gem 'dry-system'
-gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami', branch: 'remove-unwated-folders-from-path'
+gem 'dry-system-hanami', github: 'davydovanton/dry-system-hanami'
 
 group :plugins do
   gem 'hanami-reloader'

@@ -1,7 +1,6 @@
 GIT
   remote: git://github.com/davydovanton/dry-system-hanami.git
-  revision: f7fb3a15cb79c21030dba9385baa689f31b54fb5
-  branch: remove-unwated-folders-from-path
+  revision: ae0506d4a858921936843501462cb36f55a9c3b0
   specs:
     dry-system-hanami (0.1.0)
 
