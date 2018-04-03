@@ -1,3 +1,11 @@
 p = user.name
 p
   = html.img(src: user.avatar_url)
+
+.repos__list
+  - user.repos.each do |repo|
+    .repo-item
+      .repos-item__name = repo.name
+      .repos-item__description = repo.description
+      .repos-item__language = repo.language
+
