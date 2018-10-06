@@ -6,7 +6,7 @@ module Web::Controllers::User
     expose :user
 
     def call(params)
-      @user = repository.find(params[:id])
+      @user = repository.with_repos(params[:id])
       halt 404 unless @user
     end
   end
