@@ -140,6 +140,9 @@ GEM
       rom (~> 3.3, >= 3.3.3)
       rom-repository (~> 1.4)
       rom-sql (~> 1.3, >= 1.3.5)
+    hanami-pagination (0.2.0)
+      hanami-helpers (~> 1.1)
+      hanami-model (~> 1.0)
     hanami-reloader (0.2.1)
       guard-rack (~> 2.2)
       hanami (~> 1.1)
@@ -327,6 +330,7 @@ DEPENDENCIES
   foreman
   hanami (= 1.2.0.beta2)
   hanami-model (= 1.2.0.beta2)
+  hanami-pagination
   hanami-reloader
   hanami-webconsole
   http

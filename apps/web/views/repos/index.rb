@@ -1,6 +1,7 @@
 module Web::Views::Repos
   class Index
     include Web::View
+    include Hanami::Pagination::View
 
     def select_repos_by_language
       form_for :repos, routes.root_path, method: :get do

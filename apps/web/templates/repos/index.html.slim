@@ -8,5 +8,7 @@
       .repos-item__description = repo.description
       .repos-item__language = repo.language
 
+= paginate(:repos) if repos.any?
+
 
 

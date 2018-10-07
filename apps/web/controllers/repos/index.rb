@@ -1,6 +1,7 @@
 module Web::Controllers::Repos
   class Index
     include Web::Action
+    include Hanami::Pagination::Action
     include Import[repos_list: 'services.web.repos.list']
 
     expose :repos
@@ -9,7 +10,7 @@ module Web::Controllers::Repos
 
     def call(params)
       language = params[:repos]&.fetch(:language) { nil }
-      @repos = repos_list.call(language) || []
+      @repos = all_for_page(repos_list.call(language))
     end
   end
 end

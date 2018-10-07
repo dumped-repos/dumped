@@ -5,6 +5,7 @@ gem 'bootsnap', require: false
 gem 'rake'
 gem 'hanami',       '1.2.0.beta2'
 gem 'hanami-model', '1.2.0.beta2'
+gem 'hanami-pagination'
 
 gem 'pg'
 

@@ -1,0 +1,1 @@
+RepoRepository.enable_pagination!
