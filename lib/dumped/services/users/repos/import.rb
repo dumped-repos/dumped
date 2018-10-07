@@ -43,6 +43,7 @@ module Services
             language: repo_hash['language'],
             forks_count: repo_hash['forks_count'],
             open_issues_count: repo_hash['open_issues_count'],
+            abandoned: false
           }
         end
 

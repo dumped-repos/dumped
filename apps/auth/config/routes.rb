@@ -6,4 +6,4 @@
 get  '/:provider/callback', to: 'auth#create'
 post '/:provider/callback', to: 'auth#create'
 get  '/failure',            to: 'auth#failure'
-get  '/logout',             to: 'sessions#destroy'
+get  '/logout',             to: 'auth#destroy'

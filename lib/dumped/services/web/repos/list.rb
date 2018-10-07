@@ -8,10 +8,10 @@ module Services
 
         def call(language)
           if language
-            return repository.repos if language == Repo::ALL.downcase
-            repository.by_language(language)
+            return repository.abandoned if language == Repo::ALL.downcase
+            repository.abandoned_by_language(language)
           else
-            repository.repos
+            repository.abandoned
           end
         end
       end

@@ -3,8 +3,12 @@ class RepoRepository < Hanami::Repository
     belongs_to :user
   end
 
-  def by_language(language)
-    repos.where(language: language)
+  def abandoned
+    repos.where(abandoned: true)
+  end
+
+  def abandoned_by_language(language)
+    repos.where(abandoned: true, language: language)
   end
 
   def find(id)
