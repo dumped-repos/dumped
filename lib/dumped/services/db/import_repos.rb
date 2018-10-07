@@ -1,5 +1,5 @@
 module Services
-  module Db
+  module DB
     class ImportRepos
       include Import[
         repo_repository: 'repositories.repo',
