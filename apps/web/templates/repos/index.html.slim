@@ -4,7 +4,7 @@
 .repos__list
   - repos.each do |repo|
     .repo-item
-      .repos-item__name = repo.name
+      .repos-item__name = link_to repo.name , routes.repo_path(repo.id)
       .repos-item__description = repo.description
       .repos-item__language = repo.language
 

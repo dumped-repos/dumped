@@ -7,6 +7,7 @@ html
     = javascript 'application'
     = stylesheet 'application'
   body
+    = link_to "Home", routes.root_path
     - if authenticated?
       a href="auth/logout" Logout
       = link_to 'Profile', routes.user_path(current_user.id)

@@ -4,6 +4,8 @@ class RepoRepository < Hanami::Repository
   end
 
   def by_language(language)
-    repos.where(language: language).to_a
+
+  def find(id)
+    repos.by_pk(id).one
   end
 end
