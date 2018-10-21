@@ -1,38 +1,34 @@
 describe Services::Web::Repos::List do
-  let(:service) { described_class.new }
+  let(:repo) { double() }
+  let(:service) { described_class.new(repository: repo) }
   let(:language) { nil }
-  let(:repo) { RepoRepository.new }
 
   subject { service.call(language) }
 
-  after { repo.clear }
-
-  before do
-    repo.create(repo_attributes(language: 'javascript'))
-    repo.create(repo_attributes(language: 'ruby'))
-  end
-
   describe '#call' do
-    context 'when there repositories but no language argument' do
-      it { expect(subject).to be_a Array }
-      it { expect(subject).to all(be_a Repo) }
+    context 'without language argument' do
+      it 'returns all abandoned repos' do
+        expect(repo).to receive(:abandoned)
+        subject
+      end
     end
 
     context 'when language argument is present' do
       let(:language) { 'ruby' }
 
-      it { expect(subject).to be_a Array }
-      it { expect(subject).to all(be_a Repo) }
-      it { expect(subject.count).to eq 1 }
-      it { expect(subject.first.language).to eq 'ruby' }
+      it 'returns all abandoned repos by language' do
+        expect(repo).to receive(:abandoned_by_language).with(language)
+        subject
+      end
     end
 
     context 'when language argument is all' do
       let(:language) { 'all' }
 
-      it { expect(subject).to be_a Array }
-      it { expect(subject).to all(be_a Repo) }
-      it { expect(subject.count).to eq 2 }
+      it 'returns all abandoned repos' do
+        expect(repo).to receive(:abandoned)
+        subject
+      end
     end
   end
 end

@@ -7,6 +7,10 @@ class RepoRepository < Hanami::Repository
     repos.where(abandoned: true)
   end
 
+  def by_language(language)
+    repos.where(language: language)
+  end
+
   def abandoned_by_language(language)
     repos.where(abandoned: true, language: language)
   end

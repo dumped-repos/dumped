@@ -1,14 +1,14 @@
 describe Web::Controllers::Repos::Index, type: :action do
   let(:params) { Hash[] }
-  let(:repos_list) { instance_double('RepoList') }
-  let(:action) { described_class.new(repos_list: repos_list) }
+  let(:action) { described_class.new }
+  let(:repos_list) { action.repos_list }
 
   subject { action.call(params) }
 
   describe '#call' do
     context 'no language params' do
       it 'calls repos_list' do
-        expect(repos_list).to receive(:call).with(nil)
+        expect(repos_list).to receive(:call).with(nil).and_call_original
         subject
       end
     end
@@ -16,7 +16,7 @@ describe Web::Controllers::Repos::Index, type: :action do
     context 'with language params' do
       let(:params) { Hash[repos: { language: 'ruby' }] }
       it 'calls repos_list' do
-        expect(repos_list).to receive(:call).with('ruby')
+        expect(repos_list).to receive(:call).with('ruby').and_call_original
         subject
       end
     end
