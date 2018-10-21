@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-describe Web::Controllers::Repos::MarkAsAbandoned, type: :action do
+describe Web::Controllers::Repos::UpdateAbandonedStatus, type: :action do
   let(:params) { Hash[] }
-  let(:mark_as_abandoned) { double() }
-  let(:action) { described_class.new(mark_as_abandoned: mark_as_abandoned) }
+  let(:update_abandoned) { double }
+  let(:action) { described_class.new(update_abandoned: update_abandoned) }
   let(:user_repo) { UserRepository.new }
   let(:user) { user_repo.create(login: 'yaya') }
 
@@ -19,10 +19,10 @@ describe Web::Controllers::Repos::MarkAsAbandoned, type: :action do
 
     context 'with repo_id param' do
       let(:session) { { current_user: user } }
-      let(:params)  { { 'rack.session' => session, id: 1 } }
+      let(:params)  { { 'rack.session' => session, id: 1, abandoned: true } }
 
       it 'redirects to user page' do
-        expect(mark_as_abandoned).to receive(:call).with(instance_of(User), 1)
+        expect(update_abandoned).to receive(:call).with(instance_of(User), 1, true)
         response = action.call(params)
         expect(response).to have_http_status(302)
         expect(response[1]['Location']).to eq "/user/#{user.id}"

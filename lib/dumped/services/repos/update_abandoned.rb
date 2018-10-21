@@ -2,7 +2,7 @@
 
 module Services
   module Repos
-    class MarkAsAbandoned
+    class UpdateAbandoned
       class RepoDoesNotBelongToCurrentUserError < StandardError
         def initialize(repo, user)
           super("The Repository #{repo.name} does not belong to the user #{user.name}")
@@ -11,17 +11,18 @@ module Services
 
       class RepoDoesNotExistsError < StandardError
         def initialize
-          super("The Repository does not exists")
+          super('The Repository does not exists')
         end
       end
 
       include Import[repository: 'repositories.repo']
 
-      def call(user, repo_id)
+      def call(user, repo_id, abandoned)
         repo = repository.find(repo_id)
         raise RepoDoesNotExistsError unless repo
+
         check_repo_owner(repo, user)
-        repository.update(repo_id, abandoned: true)
+        repository.update(repo_id, abandoned: abandoned)
       end
 
       private

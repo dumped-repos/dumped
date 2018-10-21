@@ -4,10 +4,9 @@ module Web::Views::User
 
     def repo_update_abandoned_status_link(repo)
       if repo.abandoned
-        # TODO: Update mark_abandoned comtrollet to accept params
-        link_to 'Maintained', routes.root_path
+        link_to 'Maintained', routes.update_abandoned_status_repo_path(repo.id, abandoned: false)
       else
-        link_to 'Abandoned', routes.mark_as_abandoned_repo_path(repo.id)
+        link_to 'Abandoned', routes.update_abandoned_status_repo_path(repo.id, abandoned: true)
       end
     end
   end

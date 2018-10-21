@@ -2,7 +2,7 @@
 
 require_relative '../../spec_helper'
 
-RSpec.describe Services::Repos::MarkAsAbandoned do
+RSpec.describe Services::Repos::UpdateAbandoned do
   let(:user_repo) { UserRepository.new }
   let(:repo_repository) { RepoRepository.new }
 
@@ -20,7 +20,7 @@ RSpec.describe Services::Repos::MarkAsAbandoned do
 
     it 'updates abandoned attribute for repository' do
       expect {
-        service.call(user, repo_id)
+        service.call(user, repo_id, true)
       }.to raise_error(described_class::RepoDoesNotExistsError)
     end
   end
@@ -31,7 +31,7 @@ RSpec.describe Services::Repos::MarkAsAbandoned do
 
     it 'updates abandoned attribute for repository' do
       expect(repo.abandoned).to eq false
-      service.call(user, repo_id)
+      service.call(user, repo_id, true)
       updated_repo = repo_repository.find(repo.id)
       expect(updated_repo.abandoned).to eq true
     end
@@ -43,7 +43,7 @@ RSpec.describe Services::Repos::MarkAsAbandoned do
 
     it 'raises RepoDoesNotBelongToCurrentUserError' do
       expect {
-        service.call(user, repo_id)
+        service.call(user, repo_id, true)
       }.to raise_error(described_class::RepoDoesNotBelongToCurrentUserError)
     end
   end

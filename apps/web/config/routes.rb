@@ -6,7 +6,7 @@
 root to: 'repos#index'
 resources :repos, only: [:index, :show, :new] do
   member do
-    get 'mark_as_abandoned'
+    get 'update_abandoned_status'
   end
 end
 get '/user/:id', to: 'user#show', as: :user
