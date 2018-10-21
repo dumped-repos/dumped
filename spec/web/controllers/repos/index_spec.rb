@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Web::Controllers::Repos::Index, type: :action do
   let(:params) { Hash[] }
   let(:action) { described_class.new }
